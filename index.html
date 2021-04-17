@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple JS Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>Calculator</h1>
+        </header>
+        <section class="display">
+            <div class="previousvalue"></div>
+            <input type="text" class="currentvalue" value="0" readonly />
+        </section>
+
+        <button class="clearEntry function">CE</button>
+        <button class="clear function">C</button>
+        <button class="delete function">
+            <i class="fas fa-backspace"></i>
+        </button>
+        <button class="operator divide function">/</button>
+
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator function">*</button>
+
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator function">-</button>
+
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator function">+</button>
+
+        <button class="signChange">+/-</button>
+        <button class="number">0</button>
+        <button class="number">.</button>
+        <button class="equals">=</button>
+    </main>
+</body>
+
+</html>
