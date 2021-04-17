@@ -3,7 +3,7 @@ const initApp = () => {
     const currentValueElem = document.querySelector('.currentvalue');
     const previousValueElem = document.querySelector('.previousvalue');
     let itemArray = [];
-    const equationArray = [];
+    let equationArray = [];
     let newNumberFlag = false;
 
     const inputButtons = document.querySelectorAll('.number');
@@ -14,6 +14,8 @@ const initApp = () => {
             if (newNumberFlag) {
                 currentValueElem.value = newInput;
                 newNumberFlag = false;
+            } else if (currentValueElem.value.includes('.') && newInput === '.') {
+                return;
             } else {
                 currentValueElem.value =
                     currentValueElem.value == 0
@@ -131,6 +133,7 @@ const initApp = () => {
     const deleteButton = document.querySelector('.delete');
     deleteButton.addEventListener('click', () => {
         currentValueElem.value = currentValueElem.value.slice(0, -1);
+        if (!currentValueElem.value.length) currentValueElem.value = 0;
     });
 
     const signChangeButton = document.querySelector('.signChange');
