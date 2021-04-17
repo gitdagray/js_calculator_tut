@@ -119,8 +119,8 @@ const initApp = () => {
     clearButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             currentValueElem.value = 0;
+            previousValueElem.textContent = '';
             if (event.target.classList.contains('clear')) {
-                previousValueElem.textContent = '';
                 itemArray = [];
                 equationArray = [];
             }
