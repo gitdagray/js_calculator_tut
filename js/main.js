@@ -38,9 +38,6 @@ const initApp = () => {
             const newOperator = event.target.textContent;
             const currentVal = currentValueElem.value;
 
-            // need number first 
-            if (!itemArray.length && currentVal == 0) return;
-
             // begin new equation 
             if (!itemArray.length) {
                 itemArray.push(currentVal, newOperator);
