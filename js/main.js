@@ -12,7 +12,10 @@ const initApp = () => {
 
             const newInput = event.target.textContent;
             if (newNumberFlag) {
-                currentValueElem.value = newInput;
+                currentValueElem.value =
+                    newInput === '.'
+                        ? "0."
+                        : newInput;
                 newNumberFlag = false;
             } else if (currentValueElem.value.includes('.') && newInput === '.') {
                 return;
