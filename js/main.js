@@ -39,7 +39,8 @@ const initApp = () => {
             }
 
             const newOperator = event.target.textContent;
-            const currentVal = parseFloat(currentValueElem.value);
+            let currentVal = parseFloat(currentValueElem.value);
+            if (isNaN(currentVal)) currentVal = 0;
 
             // begin new equation 
             if (!itemArray.length) {
@@ -63,17 +64,20 @@ const initApp = () => {
 
                 equationArray.push(equationObj);
                 const equationString =
-                    `${equationObj['num1']} 
-                     ${equationObj['op']} 
-                     ${equationObj['num2']}`;
+                    `${equationObj['num1']} ${equationObj['op']} ${equationObj['num2']}`;
 
-                const newValue = calculate(equationString, currentValueElem);
+                if (divByZero(equationString)) {
+                    equationArray.pop();
+                    currentValueElem.value = "/0=🤯💩";
+                    // start new equation 
+                    itemArray = [0, newOperator];
+                } else {
+                    const newValue = calculate(equationString);
+                    previousValueElem.textContent = `${newValue} ${newOperator}`;
+                    // start new equation 
+                    itemArray = [newValue, newOperator];
+                }
 
-                previousValueElem.textContent =
-                    `${newValue} ${newOperator}`;
-
-                // start new equation 
-                itemArray = [newValue, newOperator];
                 newNumberFlag = true;
                 console.log(equationArray);
             }
@@ -109,9 +113,14 @@ const initApp = () => {
         const equationString =
             `${equationObj['num1']} ${equationObj['op']} ${equationObj['num2']}`;
 
-        calculate(equationString, currentValueElem);
-
         previousValueElem.textContent = `${equationString} =`;
+
+        if (divByZero(equationString)) {
+            equationArray.pop();
+            currentValueElem.value = "/0=🤯💩";
+        } else {
+            currentValueElem.value = calculate(equationString);
+        }
 
         newNumberFlag = true;
         itemArray = [];
@@ -145,11 +154,17 @@ const initApp = () => {
 
 document.addEventListener("DOMContentLoaded", initApp);
 
+const divByZero = (equation) => {
+    return /(\/ 0$)/.test(equation);
+}
 
 const calculate = (equation, currentValueElem) => {
-    const regex = /(^[*/=])|(\s)/g;
-    equation = equation.replace(regex, '');
-    const divByZero = /(\/0)/.test(equation);
-    if (divByZero) return currentValueElem.value = 0;
-    return currentValueElem.value = eval(equation);
+    console.log(equation);
+    //const regex = /(^[*/=])|(\s)/g;
+    //equation = equation.replace(regex, '');
+    /* const divByZero = /(\/ 0$)/.test(equation);
+    console.log(divByZero)
+    if (divByZero) return currentValueElem.value = 0; */
+    //return currentValueElem.value = eval(equation);
+    return eval(equation);
 }
