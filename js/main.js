@@ -18,7 +18,7 @@ const initApp = () => {
                 return;
             } else {
                 currentValueElem.value =
-                    currentValueElem.value == 0
+                    currentValueElem.value == 0 && currentValueElem.value.length == 1 && newInput !== '.'
                         ? newInput
                         : `${currentValueElem.value}${newInput}`;
             }
@@ -36,7 +36,7 @@ const initApp = () => {
             }
 
             const newOperator = event.target.textContent;
-            const currentVal = currentValueElem.value;
+            const currentVal = parseFloat(currentValueElem.value);
 
             // begin new equation 
             if (!itemArray.length) {
