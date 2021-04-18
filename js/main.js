@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 const calculate = (equation, currentValueElem) => {
     const regex = /(^[*/=])|(\s)/g;
-    equation.replace(regex, '');
+    equation = equation.replace(regex, '');
     const divByZero = /(\/0)/.test(equation);
     if (divByZero) return currentValueElem.value = 0;
     return currentValueElem.value = eval(equation);
